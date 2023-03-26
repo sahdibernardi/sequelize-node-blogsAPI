@@ -1,8 +1,9 @@
 const express = require('express');
 const { loginController } = require('../controllers/index');
+const bodyValidation = require('../middlewares/bodyValidation');
 
 const loginRouter = express.Router();
 
-loginRouter.get('/login', loginController);
+loginRouter.post('/', bodyValidation, loginController.getUserByEmail);
 
 module.exports = loginRouter;
