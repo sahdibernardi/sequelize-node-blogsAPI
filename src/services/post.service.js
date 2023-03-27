@@ -1,5 +1,5 @@
 // const { use } = require('frisby');
-const { BlogPost, Category, PostCategory } = require('../models');
+const { BlogPost, Category, PostCategory, User } = require('../models');
 
 const createPost = async (post) => {
   const categories = await Category.findAll({
@@ -17,4 +17,11 @@ const createPost = async (post) => {
   return newPost;
 };
 
-module.exports = { createPost };
+const gettAllPosts = async () => BlogPost.findAll({
+  include: [
+    { model: User, as: 'user', attributes: { exclude: 'password' } },
+    { model: Category, as: 'categories', through: { attributes: [] } },
+  ],
+});
+
+module.exports = { createPost, gettAllPosts };
