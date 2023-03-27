@@ -14,8 +14,6 @@ const createPost = async (post) => {
   await Promise
     .all((post.categoryIds).map((c) => PostCategory
       .create({ categoryId: c, postId: newPost.dataValues.id })));
-
-  console.error(newPost);
   return newPost;
 };
 
