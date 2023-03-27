@@ -13,4 +13,6 @@ userRouter.get('/', tokenValidation, userController.getUsers);
 
 userRouter.get('/:id', tokenValidation, userController.getById);
 
+userRouter.delete('/me', tokenValidation, userController.deleteMe);
+
 module.exports = userRouter;
