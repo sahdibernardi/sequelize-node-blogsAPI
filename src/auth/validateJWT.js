@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
           return res.status(401).json({ message: 'Token not found' });
         }
         const verification = verifyToken(token);
-        req.data = verification;
+        req.data = verification.data;
         next();
       } catch (error) {
         res.status(401).json({
